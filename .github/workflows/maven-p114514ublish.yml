@@ -1,10 +1,8 @@
-name: Build a Java Package with Maven
+name: Manual Build of Java Package with Maven
 
 on:
-  push:
-    branches:
-      - main
-      
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
