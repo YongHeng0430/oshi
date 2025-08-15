@@ -1,4 +1,4 @@
-name: Build
+name: Manual Build and Publish Java Package
 
 on:
   workflow_dispatch:
