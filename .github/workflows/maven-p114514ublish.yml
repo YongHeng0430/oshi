@@ -1,28 +1,25 @@
-name: Build Java Package with Maven
+name: Build a Java Package with Maven
 
 on:
-  workflow_dispatch:
-
+  push:
+    branches:
+      - main
+      
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
+      
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven
-
+          cache: 'maven'
+          
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-
-      - name: Upload all module jars
-        uses: actions/upload-artifact@v4
-        with:
-          name: java-jar
-          path: '**/target/*.jar'
